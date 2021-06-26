@@ -1,0 +1,3 @@
+rootProject.name = "Indian Postal Codes Library"
+include ':app'
+include ':IndianPinCodes'
