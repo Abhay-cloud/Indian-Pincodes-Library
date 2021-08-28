@@ -116,4 +116,34 @@ public class IndianPincodes {
         return finalObj;
     }
 
+    public static JSONObject getInfoByPincode(Context context, String pincode){
+        JSONObject finalObj = new JSONObject();
+        try {
+            JSONObject obj = new JSONObject(Util.loadJsonfromAssets(context));
+            JSONArray arr = obj.getJSONArray("Sheet1");
+            JSONArray ResultArray = new JSONArray();
+
+
+            for (int i=0; i<arr.length();i++){
+                JSONObject obj1 = arr.getJSONObject(i);
+                JSONObject infoObj = new JSONObject();
+                if (obj1.getString("Pincode").equals(pincode)){
+                    infoObj.put("PostOfficeName", obj1.getString("PostOfficeName"));
+                    infoObj.put("City",obj1.getString("City"));
+                    infoObj.put("Pincode",obj1.getString("Pincode"));
+                    infoObj.put("State", obj1.getString("State"));
+                    infoObj.put("District", obj1.getString("District"));
+                    ResultArray.put(infoObj);
+                }
+
+            }
+            finalObj.put("Result", ResultArray);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return finalObj;
+    }
+
 }
