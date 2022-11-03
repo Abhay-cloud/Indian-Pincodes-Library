@@ -20,12 +20,13 @@ public class IndianPincodes {
                 JSONObject obj1 = arr.getJSONObject(i);
                 if (obj1.getString("Pincode").equals(pincode)) {
                     Log.d("postal", "Found!");
+                    return true;
                 }
 
             } } catch (JSONException e) {
             e.printStackTrace();
         }
-        return true;
+        return false;
     }
 
     public static JSONObject getPincodeByCity(Context context, String City){
